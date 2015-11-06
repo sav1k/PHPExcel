@@ -726,8 +726,11 @@ class PHPExcel_Calculation_LookupRef
                 (!is_numeric($lookup_value) && !is_numeric($rowData[$firstColumn]) && (strtolower($rowData[$firstColumn]) > strtolower($lookup_value)))) {
                 break;
             }
-            $rowNumber = $rowKey;
-            $rowValue = $rowData[$firstColumn];
+            if ((is_numeric($lookup_value) && is_numeric($rowData[$firstColumn])) ||
+                (!is_numeric($lookup_value) && !is_numeric($rowData[$firstColumn]))) {
+                $rowNumber = $rowKey;
+                $rowValue = $rowData[$firstColumn];
+            }
         }
 
         if ($rowNumber !== false) {
@@ -790,8 +793,11 @@ class PHPExcel_Calculation_LookupRef
                 (!is_numeric($lookup_value) && !is_numeric($rowData) && (strtolower($rowData) > strtolower($lookup_value)))) {
                 break;
             }
-            $rowNumber = $rowKey;
-            $rowValue = $rowData;
+            if ((is_numeric($lookup_value) && is_numeric($rowData)) ||
+                (!is_numeric($lookup_value) && !is_numeric($rowData))) {
+                $rowNumber = $rowKey;
+                $rowValue = $rowData;
+            }
         }
 
         if ($rowNumber !== false) {
