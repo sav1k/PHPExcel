@@ -2820,6 +2820,7 @@ class PHPExcel_Calculation
         //    Parse the formula onto the token stack and calculate the value
         $this->cyclicReferenceStack->push($wsCellReference);
         $cellValue = $this->processTokenStack($this->_parseFormula($formula, $pCell), $cellID, $pCell);
+        
         $this->cyclicReferenceStack->pop();
 
         // Save to calculation cache
