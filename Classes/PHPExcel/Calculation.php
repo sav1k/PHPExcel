@@ -3785,7 +3785,9 @@ class PHPExcel_Calculation
                                 return $this->raiseFormulaError('Unable to access Cell Reference');
                             }
                             $this->_debugLog->writeDebugLog('Evaluation Result for cell ', $cellRef, ' in worksheet ', $matches[2], ' is ', $this->showTypeDetails($cellValue));
-//                            $cellRef = $matches[2].'!'.$cellRef;
+                            if (strpos($cellRef, '!') === false){
+                                $cellRef = $matches[2].'!'.$cellRef;
+                            }
                         } else {
 //                            echo '$cellRef='.$cellRef.' in current worksheet<br />';
                             $this->_debugLog->writeDebugLog('Evaluating Cell ', $cellRef, ' in current worksheet');
